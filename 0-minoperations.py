@@ -1,17 +1,31 @@
 #!/usr/bin/python3
-""" Minimum Operations"""
+"""
+0-minoperations module
+"""
 
 
 def minOperations(n):
-    """ Minimum Operations"""
-    if n <= 1:
+    """
+    Calculates the fewest number of operations
+    to reach exactly n H characters.
+
+    Args:
+        n (int): target number of characters
+
+    Returns:
+        int: minimum number of operations, or 0 if impossible
+    """
+    if n < 2:
         return 0
-    i = 2
-    result = 0
-    while i <= n:
-        if n % i == 0:
-            result += i
-            n = n / i
-        else:
-            i += 1
-    return result
+
+    operations = 0
+    divisor = 2
+
+    while n > 1:
+        while n % divisor == 0:
+            operations += divisor
+            n //= divisor
+        divisor += 1
+
+    return operations
+
